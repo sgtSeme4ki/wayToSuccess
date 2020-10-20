@@ -1,0 +1,15 @@
+Stino JS HTML CSS, PHP Datenbanken Backend
+
+Verschiedene Skills, Schlagwort suchbar, wie Python.
+Erklärung, wie ich es gelernt hab und wie gut ich es kann.
+
+Was ich noch lernen will.
+
+Softskills.
+
+SQlite DB mit PHP.
+
+Netzstruktur
+Standardbutton
+
+Klasse Node mit Onklick
