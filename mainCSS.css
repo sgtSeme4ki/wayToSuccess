@@ -1,5 +1,16 @@
-node{
+.node{
     position: absolute;
     border: 1px solid black;
+    border-radius: 50%;
+    height: 25vh;
+    width: 25vh;
+    z-index: 10;
     
+}
+#node:active{
+    background-color: bisque;
+}
+#node:hover{
+    cursor: pointer;
+    border-width: 20vw
 }
