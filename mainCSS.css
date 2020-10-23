@@ -32,3 +32,9 @@ body{
     cursor: pointer;
     border-width: 12px;
 }
+
+.couplingRod{
+    width: 100px;
+    height: 10px;
+    background-color: white;
+}
