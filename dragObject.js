@@ -13,7 +13,7 @@ container.addEventListener("mousemove", drag, false);
 
 function dragStart(e) {
 
-  if (e.target !== e.currentTarget) {
+  if (e.target !== e.currentTarget && e.target !== document.getElementById("svg1")) {
     active = true;
 
     // this is the item we are interacting with
@@ -29,11 +29,14 @@ function dragStart(e) {
       }
 
       if (e.type === "touchstart") {
+        
         activeItem.initialX = e.touches[0].clientX; - activeItem.xOffset;
         activeItem.initialY = e.touches[0].clientY - activeItem.yOffset;
       } else {
         activeItem.initialX = e.clientX - activeItem.xOffset;
         activeItem.initialY = e.clientY - activeItem.yOffset;
+        console.log(e.clientX);
+        console.log(e.clientY);
         /*console.log("initialXStart= " + activeItem.initialX);
         console.log("initialYStart= " + activeItem.initialY);
         console.log("offsetx= " + activeItem.xOffset);
@@ -77,6 +80,5 @@ function drag(e) {
 }
 
 function setTranslate(xPos, yPos, el) {
-  console.log("xpos: " + xPos + "\nypos: " + yPos);
   el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
 }
