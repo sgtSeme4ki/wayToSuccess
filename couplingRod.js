@@ -1,11 +1,14 @@
 
 //create couplingRod for each element
 //first to second, second two third until second last to last
-let x1, x2, y1, y2 = null;
-let html = "";
-let svg = document.getElementById("svg1");
+
 let items = document.getElementsByClassName("item");
-let cont = document.getElementById("body");
+let cont = document.getElementById("container");
+let svg = document.getElementById("svg1");
+
+let line = document.createElement("line");
+line.className = "couplingRod";
+
 
 function findPos(obj){
     var curleft = curtop = 0;
@@ -16,31 +19,16 @@ function findPos(obj){
         } while (obj = obj.offsetParent);
     } return [curleft, curtop];
 }
-//zwischen 1 und 2: ca (47|25) und (70|50)
-for(i = 0; i < items.length - 1; i++){
-    if(i==0){
-        //connect first with last
-        
-        div0Pos = findPos(items.item(0));
-        console.log(div0Pos);
-        div1Pos = findPos(items.item(items.length -1));
-        console.log(div1Pos);
-        html = `<line x1=${div0Pos[1]} y1=${div0Pos[0]} x2=${div1Pos[0]} y2=${div1Pos[1]} stroke="white"/>`;
-        svg.innerHTML += html;
-        
-    }
-        div0Pos = findPos(items.item(i));
-        console.log(div0Pos);
-        div1Pos = findPos(items.item(++i));
-        console.log(div1Pos);
-        html = `<line x1=${div0Pos[1]} y1=${div0Pos[0]} x2=${div1Pos[0]} y2=${div1Pos[1]} stroke="white"/>`;
-        svg.innerHTML += html;
-}
 
-/*div0Pos = findPos(items.item(1));
-console.log(div0Pos);
-div1Pos = findPos(items.item(2));
-console.log(div1Pos);
-html = `<line x1=${div0Pos[1]} y1=${div0Pos[0]} x2=${div1Pos[0]} y2=${div1Pos[1]} stroke="white"/>`;
-svg.innerHTML += html;*/
-//last*/
+let x1 = items.item(0).offsetLeft + (items.item(0).clientHeight/2);
+console.log(x1);
+let y1 = items.item(0).offsetTop + (items.item(0).clientWidth/2);
+let x2 = items.item(1).offsetLeft + (items.item(1).clientHeight/2);
+let y2 = items.item(1).offsetTop + (items.item(1).clientWidth/2);
+
+line.setAttribute("x1", x1);
+line.setAttribute("y1", y1);
+line.setAttribute("x2", x2);
+line.setAttribute("y2", y2);
+
+svg.appendChild(line);
