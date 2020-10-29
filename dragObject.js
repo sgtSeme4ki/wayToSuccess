@@ -12,8 +12,8 @@ container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
 
 function dragStart(e) {
-
-  if (e.target !== e.currentTarget && e.target !== document.getElementById("svg1")) {
+  //Make SVG and lines undraggable
+  if (e.target !== e.currentTarget && e.target !== document.getElementById("svg1") && e.target.localName !== "line") {
     active = true;
 
     // this is the item we are interacting with
@@ -35,12 +35,6 @@ function dragStart(e) {
       } else {
         activeItem.initialX = e.clientX - activeItem.xOffset;
         activeItem.initialY = e.clientY - activeItem.yOffset;
-        console.log(e.clientX);
-        console.log(e.clientY);
-        /*console.log("initialXStart= " + activeItem.initialX);
-        console.log("initialYStart= " + activeItem.initialY);
-        console.log("offsetx= " + activeItem.xOffset);
-        console.log("offsety= " + activeItem.yOffset);*/
       }
     }
   }
@@ -50,8 +44,6 @@ function dragEnd(e) {
   if (activeItem !== null) {
     activeItem.initialX = activeItem.currentX;
     activeItem.initialY = activeItem.currentY;
-    //console.log("initialXdragend =" + activeItem.initialX);
-    //console.log("initialYdragend = " + activeItem.initialY);
   }
 
   active = false;
@@ -68,8 +60,6 @@ function drag(e) {
     } else {
       activeItem.currentX = e.clientX - activeItem.initialX;
       activeItem.currentY = e.clientY - activeItem.initialY;
-      //console.log("currentDragX= " + activeItem.currentX);
-      //console.log("currentDragY= " + activeItem.currentY);
     }
 
     activeItem.xOffset = activeItem.currentX;
