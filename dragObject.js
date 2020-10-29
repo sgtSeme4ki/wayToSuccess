@@ -19,6 +19,19 @@ function dragStart(e) {
     // this is the item we are interacting with
     activeItem = e.target;
 
+    //select Lines which are connected to activeItem
+    itemX = activeItem.offsetLeft + (activeItem.clientHeight / 2);
+    itemY = activeItem.offsetTop + (activeItem.clientWidth / 2);
+    console.log(itemX);
+    console.log(itemY);
+    lines = document.getElementsByTagName("line");
+    if((lines.item(0).x1 === itemX && lines.item(0).y1 === itemY) || (lines.item(0).x2 === itemX && lines.item(0).y2 === itemY)){
+      console.log("line 0 selected");
+    }
+    //console.log(lines.item(0));
+    
+    
+
     if (activeItem !== null) {
       if (!activeItem.xOffset) {
         activeItem.xOffset = 0;

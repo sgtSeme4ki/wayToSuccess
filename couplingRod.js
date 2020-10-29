@@ -2,9 +2,10 @@
 //create couplingRod for each element
 //first to second, second two third until second last to last
 
-let items = document.getElementsByClassName("item");
+var items = document.getElementsByClassName("item");
 let cont = document.getElementById("container");
 let svg = document.getElementById("svg1");
+var assigned = new Map(); //assign item to line
 
 for (i = 0; i < items.length - 1; i++) {
     if (i === 0) {
@@ -22,9 +23,14 @@ for (i = 0; i < items.length - 1; i++) {
         line.setAttribute("x2", x2);
         line.setAttribute("y2", y2);
 
+        assigned.set(line, [items.item(0), items.item(items.length - 1)]);
+        console.log(assigned.get(line));
+        //assigned.set(items.item(0), [line], items.item(items.length - 1), [line]);
+
         repl = line.outerHTML.replace("></line>", "/>");
+        svg.appendChild(line);
         //console.log(repl);
-        svg.innerHTML += repl;
+        //svg.innerHTML += repl;
     }
     // append rest with rest
     let line = document.createElement("line");
@@ -41,16 +47,20 @@ for (i = 0; i < items.length - 1; i++) {
     line.setAttribute("x2", x2);
     line.setAttribute("y2", y2);
 
-    //convert explicit tags to selfclosing tags because SVG-lines are not drawn otherwise
-    repl = line.outerHTML.replace("></line>", "/>");
-    svg.innerHTML += repl;
-    
+    assigned.set(line, [items.item(i), items.item(i + 1)]);
+    svg.appendChild(line);
 }
+var lines = document.getElementsByTagName("line");
+//necessary to get lines drawn
+svg.innerHTML += "";
+
+//console.log(assigned);
+
 
 /*container.addEventListener("dragStart");
 container.addEventListener("dragEnd", dragEnd, false);
 container.addEventListener("drag", drag, false);*/
-// with eventlistner? callbacks?
+// with eventlistner? callbacks | if position is
 //TODO: Update couplingRods with Position of item
 
 //1: listen for movement of item
