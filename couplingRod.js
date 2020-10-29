@@ -23,7 +23,7 @@ for (i = 0; i < items.length - 1; i++) {
         line.setAttribute("y2", y2);
 
         repl = line.outerHTML.replace("></line>", "/>");
-        console.log(repl);
+        //console.log(repl);
         svg.innerHTML += repl;
     }
     // append rest with rest
@@ -41,8 +41,18 @@ for (i = 0; i < items.length - 1; i++) {
     line.setAttribute("x2", x2);
     line.setAttribute("y2", y2);
 
-    //convert explicit tags to selfclosing tags because of SVG 
+    //convert explicit tags to selfclosing tags because SVG-lines are not drawn otherwise
     repl = line.outerHTML.replace("></line>", "/>");
     svg.innerHTML += repl;
     
 }
+
+/*container.addEventListener("dragStart");
+container.addEventListener("dragEnd", dragEnd, false);
+container.addEventListener("drag", drag, false);*/
+// with eventlistner? callbacks?
+//TODO: Update couplingRods with Position of item
+
+//1: listen for movement of item
+//2: while item is dragged: get all lines which have x1|y1 or x2|y2 as middle position of item
+//3: update position of line(translate? | setAttribute?)
