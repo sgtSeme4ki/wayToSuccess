@@ -11,6 +11,8 @@ container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
 
+var activeLines = [];
+
 function dragStart(e) {
   //Make SVG and lines undraggable
   if (e.target !== e.currentTarget && e.target !== document.getElementById("svg1") && e.target.localName !== "line") {
@@ -18,19 +20,18 @@ function dragStart(e) {
 
     // this is the item we are interacting with
     activeItem = e.target;
-
-    //select Lines which are connected to activeItem
-    itemX = activeItem.offsetLeft + (activeItem.clientHeight / 2);
-    itemY = activeItem.offsetTop + (activeItem.clientWidth / 2);
-    console.log(itemX);
-    console.log(itemY);
-    lines = document.getElementsByTagName("line");
-    if((lines.item(0).x1 === itemX && lines.item(0).y1 === itemY) || (lines.item(0).x2 === itemX && lines.item(0).y2 === itemY)){
-      console.log("line 0 selected");
+    let iterator1 = assigned.values();
+    for(i = 0; i < lines.length; i++){
+      
+      //console.log((iterator1.next().value));
+      if(iterator1.next().value.lastIndexOf(activeItem) !== -1 ){
+        activeLines.push(lines.item(i));
+      }
     }
-    //console.log(lines.item(0));
-    
-    
+    /*if(activeLines[0].getAttribute("x1") === activeLines[1].getAttribute("x1")){
+      itemMiddleX = activeLines[0].getAttribute("x1");
+    }*/
+    console.log(activeLines);
 
     if (activeItem !== null) {
       if (!activeItem.xOffset) {
@@ -59,6 +60,7 @@ function dragEnd(e) {
     activeItem.initialY = activeItem.currentY;
   }
 
+  activeLines = [];
   active = false;
   activeItem = null;
 }
@@ -78,6 +80,10 @@ function drag(e) {
     activeItem.xOffset = activeItem.currentX;
     activeItem.yOffset = activeItem.currentY;
 
+    for(i = 0; i < activeLines.length; i++){
+      //choose which x,y of each line to set
+      //set it by + activeItem.currentX
+    }
     setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
   }
 }

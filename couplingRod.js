@@ -7,6 +7,7 @@ let cont = document.getElementById("container");
 let svg = document.getElementById("svg1");
 var assigned = new Map(); //assign item to line
 
+//only works for 3 items
 for (i = 0; i < items.length - 1; i++) {
     if (i === 0) {
         //append first with last
@@ -24,7 +25,6 @@ for (i = 0; i < items.length - 1; i++) {
         line.setAttribute("y2", y2);
 
         assigned.set(line, [items.item(0), items.item(items.length - 1)]);
-        console.log(assigned.get(line));
         //assigned.set(items.item(0), [line], items.item(items.length - 1), [line]);
 
         repl = line.outerHTML.replace("></line>", "/>");
@@ -48,19 +48,22 @@ for (i = 0; i < items.length - 1; i++) {
     line.setAttribute("y2", y2);
 
     assigned.set(line, [items.item(i), items.item(i + 1)]);
+    //assigned.get(line).push()
     svg.appendChild(line);
 }
 var lines = document.getElementsByTagName("line");
 //necessary to get lines drawn
 svg.innerHTML += "";
 
-//console.log(assigned);
+console.log(assigned);
 
 
 /*container.addEventListener("dragStart");
 container.addEventListener("dragEnd", dragEnd, false);
 container.addEventListener("drag", drag, false);*/
 // with eventlistner? callbacks | if position is
+
+//TODO: Write Code for arbitrary amount of nodes
 //TODO: Update couplingRods with Position of item
 
 //1: listen for movement of item
