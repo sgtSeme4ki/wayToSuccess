@@ -55,7 +55,8 @@ var lines = document.getElementsByTagName("line");
 //necessary to get lines drawn
 svg.innerHTML += "";
 
-console.log(assigned);
+
+//console.log(assigned);
 
 
 /*container.addEventListener("dragStart");

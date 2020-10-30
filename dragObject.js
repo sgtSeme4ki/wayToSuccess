@@ -11,7 +11,6 @@ container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
 
-var activeLines = [];
 
 function dragStart(e) {
   //Make SVG and lines undraggable
@@ -21,6 +20,8 @@ function dragStart(e) {
     // this is the item we are interacting with
     activeItem = e.target;
     let iterator1 = assigned.values();
+
+    activeLines = [];
 
     
     for (i = 0; i < lines.length; i++) {
@@ -64,7 +65,6 @@ function dragEnd(e) {
     activeItem.initialY = activeItem.currentY;
   }
 
-  activeLines = [];
   active = false;
   activeItem = null;
 }
