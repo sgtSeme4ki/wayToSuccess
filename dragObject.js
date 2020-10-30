@@ -31,7 +31,9 @@ function dragStart(e) {
       }
     }
     activePos = getActivePos(activeLines);
+    activeIndexes = getActiveIndexes(activeLines, activePos);
     console.log(activePos);
+    console.log(activeIndexes);
 
     console.log(activeLines);
 
@@ -114,4 +116,16 @@ if (activeLines.length > 1) {
   }
 }
 return [activeX, activeY];
+}
+
+function getActiveIndexes(activeLines, activePos){
+  activeIndexes = [];
+  for(i = 0; i < activeLines.length; i++){
+    if(activeLines[i].getAttribute("x1") === activePos[0]){
+      activeIndexes.push(0);
+    } else{
+      activeIndexes.push(1);
+    }
+  }
+  return activeIndexes;
 }
