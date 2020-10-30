@@ -21,16 +21,18 @@ function dragStart(e) {
     // this is the item we are interacting with
     activeItem = e.target;
     let iterator1 = assigned.values();
-    for(i = 0; i < lines.length; i++){
-      
+
+    
+    for (i = 0; i < lines.length; i++) {
+
       //console.log((iterator1.next().value));
-      if(iterator1.next().value.lastIndexOf(activeItem) !== -1 ){
+      if (iterator1.next().value.lastIndexOf(activeItem) !== -1) {
         activeLines.push(lines.item(i));
       }
     }
-    /*if(activeLines[0].getAttribute("x1") === activeLines[1].getAttribute("x1")){
-      itemMiddleX = activeLines[0].getAttribute("x1");
-    }*/
+    activePos = getActivePos(activeLines);
+    console.log(activePos);
+
     console.log(activeLines);
 
     if (activeItem !== null) {
@@ -43,7 +45,7 @@ function dragStart(e) {
       }
 
       if (e.type === "touchstart") {
-        
+
         activeItem.initialX = e.touches[0].clientX; - activeItem.xOffset;
         activeItem.initialY = e.touches[0].clientY - activeItem.yOffset;
       } else {
@@ -80,7 +82,7 @@ function drag(e) {
     activeItem.xOffset = activeItem.currentX;
     activeItem.yOffset = activeItem.currentY;
 
-    for(i = 0; i < activeLines.length; i++){
+    for (i = 0; i < activeLines.length; i++) {
       //choose which x,y of each line to set
       //set it by + activeItem.currentX
     }
@@ -90,4 +92,26 @@ function drag(e) {
 
 function setTranslate(xPos, yPos, el) {
   el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+}
+
+function getActivePos(activeLines){
+//get x1 or x2, depending which is the position of activeItem(can't be chosen directly because of marginal offset of item position)
+if (activeLines.length > 1) {
+  if (activeLines[0].getAttribute("x1") === activeLines[1].getAttribute("x1")) {
+    activeX = activeLines[0].getAttribute("x1")
+    activeY = activeLines[0].getAttribute("y1")
+  }
+  else if (activeLines[0].getAttribute("x1") === activeLines[1].getAttribute("x2")) {
+    activeX = activeLines[0].getAttribute("x1");
+    activeY = activeLines[0].getAttribute("y1")
+  } else if (activeLines[0].getAttribute("x2") === activeLines[1].getAttribute("x1")) {
+    activeX = activeLines[0].getAttribute("x2");
+    activeX = activeLines[0].getAttribute("y2");
+  }
+  else {
+    activeX = activeLines[0].getAttribute("x2");
+    activeY = activeLines[0].getAttribute("y2");
+  }
+}
+return [activeX, activeY];
 }
