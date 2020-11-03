@@ -29,8 +29,6 @@ for (i = 0; i < items.length - 1; i++) {
 
         repl = line.outerHTML.replace("></line>", "/>");
         svg.appendChild(line);
-        //console.log(repl);
-        //svg.innerHTML += repl;
     }
     // append rest with rest
     let line = document.createElement("line");
@@ -40,7 +38,6 @@ for (i = 0; i < items.length - 1; i++) {
     let y1 = items.item(i).offsetTop + (items.item(i).clientWidth / 2);
     let x2 = items.item(i + 1).offsetLeft + (items.item(i + 1).clientHeight / 2);
     let y2 = items.item(i + 1).offsetTop + (items.item(i + 1).clientWidth / 2);
-    // console.log(i);
 
     line.setAttribute("x1", x1);
     line.setAttribute("y1", y1);
@@ -118,8 +115,6 @@ function redraw(e) {
 
             repl = line.outerHTML.replace("></line>", "/>");
             svg.appendChild(line);
-            //console.log(repl);
-            //svg.innerHTML += repl;
         }
         // append rest with rest
         let line = document.createElement("line");
@@ -129,7 +124,7 @@ function redraw(e) {
         let y1 = items.item(i).offsetTop + (items.item(i).clientWidth / 2);
         let x2 = items.item(i + 1).offsetLeft + (items.item(i + 1).clientHeight / 2);
         let y2 = items.item(i + 1).offsetTop + (items.item(i + 1).clientWidth / 2);
-        // console.log(i);
+        console.log(x1);
 
         test = items.item(i).getAttribute("style");
         match = test.match(/-?\d+/g).map(Number);
@@ -148,7 +143,6 @@ function redraw(e) {
 
 
         if (match.length > 2) {
-            console.log("2 = " + match);
             x2offset = match[2];
             y2offset = match[3];
 

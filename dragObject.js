@@ -89,7 +89,7 @@ function drag(e) {
 
     //calculate new middle of activeItem
     newLineX = (activeItem.offsetLeft + (activeItem.clientHeight / 2) + activeItem.currentX);
-    newLineY = (activeItem.offsetTop + (activeItem.clientWidth / 2)) + activeItem.currentY;
+    newLineY = (activeItem.offsetTop + (activeItem.clientWidth / 2) + activeItem.currentY);
 
     //linear time complexity, performance probably worsens for bigger i
     for (i = 0; i < activeLines.length; i++) {
