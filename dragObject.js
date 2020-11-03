@@ -11,6 +11,11 @@ container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
 
+let activeLines = [];
+let activePos = [];
+let activeIndexes = [];
+
+let newPosX, newPosY = null;
 
 function dragStart(e) {
   //Make SVG and lines undraggable
@@ -19,24 +24,17 @@ function dragStart(e) {
 
     // this is the item we are interacting with
     activeItem = e.target;
-    let iterator1 = assigned.values();
+    iterator1 = assigned.values();
 
-    activeLines = [];
 
-    
+
     for (i = 0; i < lines.length; i++) {
-
-      //console.log((iterator1.next().value));
       if (iterator1.next().value.lastIndexOf(activeItem) !== -1) {
         activeLines.push(lines.item(i));
       }
     }
     activePos = getActivePos(activeLines);
     activeIndexes = getActiveIndexes(activeLines, activePos);
-    console.log(activePos);
-    console.log(activeIndexes);
-
-    console.log(activeLines);
 
     if (activeItem !== null) {
       if (!activeItem.xOffset) {
@@ -65,6 +63,11 @@ function dragEnd(e) {
     activeItem.initialY = activeItem.currentY;
   }
 
+  iterator1 = assigned.values();
+
+  activeLines = [];
+  activePos = [];
+  activeIndexes = [];
   active = false;
   activeItem = null;
 }
@@ -84,10 +87,22 @@ function drag(e) {
     activeItem.xOffset = activeItem.currentX;
     activeItem.yOffset = activeItem.currentY;
 
+    //calculate new middle of activeItem
+    newLineX = (activeItem.offsetLeft + (activeItem.clientHeight / 2) + activeItem.currentX);
+    newLineY = (activeItem.offsetTop + (activeItem.clientWidth / 2)) + activeItem.currentY;
+
+    //linear time complexity, performance probably worsens for bigger i
     for (i = 0; i < activeLines.length; i++) {
-      //choose which x,y of each line to set
-      //set it by + activeItem.currentX
+      if (activeIndexes[i] === 0) {
+
+        activeLines[i].setAttribute("x1", newLineX);
+        activeLines[i].setAttribute("y1", newLineY);
+      } else {
+        activeLines[i].setAttribute("x2", newLineX);
+        activeLines[i].setAttribute("y2", newLineY);
+      }
     }
+
     setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
   }
 }
@@ -96,34 +111,34 @@ function setTranslate(xPos, yPos, el) {
   el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
 }
 
-function getActivePos(activeLines){
-//get x1 or x2, depending which is the position of activeItem(can't be chosen directly because of marginal offset of item position)
-if (activeLines.length > 1) {
-  if (activeLines[0].getAttribute("x1") === activeLines[1].getAttribute("x1")) {
-    activeX = activeLines[0].getAttribute("x1")
-    activeY = activeLines[0].getAttribute("y1")
+function getActivePos(activeLines) {
+  //get x1 or x2, depending which is the position of activeItem(can't be chosen directly because of marginal offset of item position)
+  if (activeLines.length > 1) {
+    if (activeLines[0].getAttribute("x1") === activeLines[1].getAttribute("x1")) {
+      activeX = activeLines[0].getAttribute("x1")
+      activeY = activeLines[0].getAttribute("y1")
+    }
+    else if (activeLines[0].getAttribute("x1") === activeLines[1].getAttribute("x2")) {
+      activeX = activeLines[0].getAttribute("x1");
+      activeY = activeLines[0].getAttribute("y1")
+    } else if (activeLines[0].getAttribute("x2") === activeLines[1].getAttribute("x1")) {
+      activeX = activeLines[0].getAttribute("x2");
+      activeY = activeLines[0].getAttribute("y2");
+    }
+    else {
+      activeX = activeLines[0].getAttribute("x2");
+      activeY = activeLines[0].getAttribute("y2");
+    }
   }
-  else if (activeLines[0].getAttribute("x1") === activeLines[1].getAttribute("x2")) {
-    activeX = activeLines[0].getAttribute("x1");
-    activeY = activeLines[0].getAttribute("y1")
-  } else if (activeLines[0].getAttribute("x2") === activeLines[1].getAttribute("x1")) {
-    activeX = activeLines[0].getAttribute("x2");
-    activeX = activeLines[0].getAttribute("y2");
-  }
-  else {
-    activeX = activeLines[0].getAttribute("x2");
-    activeY = activeLines[0].getAttribute("y2");
-  }
-}
-return [activeX, activeY];
+  return [activeX, activeY];
 }
 
-function getActiveIndexes(activeLines, activePos){
+function getActiveIndexes(activeLines, activePos) {
   activeIndexes = [];
-  for(i = 0; i < activeLines.length; i++){
-    if(activeLines[i].getAttribute("x1") === activePos[0]){
+  for (i = 0; i < activeLines.length; i++) {
+    if (activeLines[i].getAttribute("x1") === activePos[0]) {
       activeIndexes.push(0);
-    } else{
+    } else {
       activeIndexes.push(1);
     }
   }

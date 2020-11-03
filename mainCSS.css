@@ -2,8 +2,8 @@ body{
     background-color: black; /*black for distinction while developing, TODO: similiar to conatiner*/
 }
 #container {
-    width: 90vw;
-    height: 90vh;
+    width: 100vw;
+    height: 100vh;
     background-color: #333;
     display: flex;
     align-items: center;
@@ -15,10 +15,10 @@ body{
 .item {
     
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 1vw;
+    height: 1vh;
     background-color: rgb(245, 230, 99);
-    border: 10px solid rgba(136, 136, 136, .5);
+    border: 0.1vw solid rgba(136, 136, 136, .5);
     border-radius: 50%;
     touch-action: none;
     user-select: none;
@@ -31,11 +31,11 @@ body{
 
 .item:hover {
     cursor: pointer;
-    border-width: 12px;
+    border-width: 0.2vw;
 }
 
 .couplingRod{
-    stroke-width: 2px;
+    stroke-width: 0.05vh;
     stroke-linecap: square;
     stroke: rgb(245, 230, 99)
 }
