@@ -15,13 +15,24 @@ function showSkill(e) {
     skillNode.appendChild(newSkill);
     skillNode.removeEventListener("dblclick", showSkill);
 
+
 }
-function showSkillText(){
+function showSkillText(e){
+    newTextBox = createTextBox("Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua");
+    skill = e.target;
+
+    offset = skill.style[0];
+    newTextBox.setAttribute("style", `${offset}: 100px`);
+
+    skill.appendChild(newTextBox);
 
 }
 
-function createTextBox(){
-    
+function createTextBox(text){
+    newTextBox = document.createElement("textBox");
+    newTextBox.innerHTML += text;
+
+    return NewTextBox;
 }
 
 function createSkill() {
