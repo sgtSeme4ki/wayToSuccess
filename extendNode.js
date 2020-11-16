@@ -3,20 +3,8 @@
 addEventListeners();
 
 
-function addItem(e){
-    //make position of new Item about 45° away
-   
-    
-    item1 = e.target;
-    item2 = createItem();
-    item1.removeEventListener("click", addItem);
-    var positionStyle = item1.style[0];
-    item2.setAttribute("style", `${item1.style[0]}: 15vh`);
-    container.appendChild(item2);
-    createLine(item1, item2);
-    
-    /*console.log(item1.childNodes);
-    console.log(item2.childNodes);*/
+function showSkill(e){
+    console.log("showSkill");
 }
 
 function createItem(){
@@ -58,8 +46,9 @@ function createLine(item1, item2){
 }
 
 function addEventListeners(){
-    for(i = 0; i < items.length; i++){
-       items.item(i).addEventListener("click", addItem);
+    let skillNodes = document.getElementsByClassName("skillNode");
+    for(i = 0; i < skillNodes.length; i++){
+       skillNodes.item(i).addEventListener("click", showSkill);
 
     }
 }
