@@ -9,6 +9,7 @@ function showSkill(e){
     newSkill = createSkill();
     newSkill.innerHTML += "new Skill";
     skillNode.appendChild(newSkill);
+    skillNode.removeEventListener("dblclick", showSkill);
 }
 
 function createSkill(){
