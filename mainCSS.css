@@ -45,7 +45,10 @@ body{
 }
 
 .textBox{
-    background-color: bisque;
+    position: absolute;
+    background-color: beige;
+    color: black;
+    width: 150px;
 }
 
 #svg{
