@@ -35,6 +35,7 @@ body{
 }
 
 .skill{
+    position: absolute;
     color: white;
     width: 150px;
     height: 50px;
