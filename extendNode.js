@@ -5,18 +5,19 @@ addEventListeners();
 
 function showSkill(e){
     console.log("showSkill");
+    skillNode = e.target;
+    newSkill = createSkill();
+    newSkill.innerHTML += "new Skill";
+    skillNode.appendChild(newSkill);
 }
 
 function createSkill(){
 
-    newSKill = document.createElement("div");
-    //new Items which belong to one of the three main nodes have to be smaller
-    newNode.setAttribute("class", "skill");
-    newNode.setAttribute("position", "absolute");
-    newNode.setAttribute("height", "35px");
-    newNode.setAttribute("width", "35px");
+    newSkill = document.createElement("div");
+    newSkill.setAttribute("class", "skill");
     
-    return newNode;
+    
+    return newSkill;
 }
 
 function createLine(item1, item2){
