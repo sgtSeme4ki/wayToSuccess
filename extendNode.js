@@ -15,9 +15,12 @@ function showSkill(e) {
     skillNode.appendChild(newSkill);
     skillNode.removeEventListener("dblclick", showSkill);
 
+    newSkill.addEventListener("dblclick", showSkillText);
+
 
 }
 function showSkillText(e){
+    console.log("showSkillText");
     newTextBox = createTextBox("Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua");
     skill = e.target;
 
@@ -32,14 +35,13 @@ function createTextBox(text){
     newTextBox = document.createElement("textBox");
     newTextBox.innerHTML += text;
 
-    return NewTextBox;
+    return newTextBox;
 }
 
 function createSkill() {
 
     newSkill = document.createElement("div");
     newSkill.setAttribute("class", "skill");
-
 
     return newSkill;
 }
