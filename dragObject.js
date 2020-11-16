@@ -19,7 +19,6 @@ let newPosX, newPosY = null;
 
 function dragStart(e) {
   //Make SVG and lines undraggable
-  console.log(e.target);
   if (e.target !== e.currentTarget && e.target !== document.getElementById("svg1") && e.target.localName !== "line") {
     active = true;
 
