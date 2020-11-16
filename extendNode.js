@@ -16,6 +16,13 @@ function showSkill(e) {
     skillNode.removeEventListener("dblclick", showSkill);
 
 }
+function showSkillText(){
+
+}
+
+function createTextBox(){
+    
+}
 
 function createSkill() {
 
