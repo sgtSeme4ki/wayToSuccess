@@ -48,7 +48,7 @@ function createLine(item1, item2){
 function addEventListeners(){
     let skillNodes = document.getElementsByClassName("skillNode");
     for(i = 0; i < skillNodes.length; i++){
-       skillNodes.item(i).addEventListener("click", showSkill);
+       skillNodes.item(i).addEventListener("dbclick", showSkill);
 
     }
 }
