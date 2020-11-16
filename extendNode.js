@@ -25,14 +25,15 @@ function showSkillText(e){
     skill = e.target;
 
     offset = skill.style[0];
-    newTextBox.setAttribute("style", `${offset}: 100px`);
+    newTextBox.setAttribute("style", `${offset}: 60px`);
 
     skill.appendChild(newTextBox);
 
 }
 
 function createTextBox(text){
-    newTextBox = document.createElement("textBox");
+    newTextBox = document.createElement("div");
+    newTextBox.setAttribute("class", "textBox");
     newTextBox.innerHTML += text;
 
     return newTextBox;
