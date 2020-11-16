@@ -7,10 +7,11 @@ function showSkill(e){
     console.log("showSkill");
 }
 
-function createItem(){
-    newNode = document.createElement("div");
+function createSkill(){
+
+    newSKill = document.createElement("div");
     //new Items which belong to one of the three main nodes have to be smaller
-    newNode.setAttribute("class", "item");
+    newNode.setAttribute("class", "skill");
     newNode.setAttribute("position", "absolute");
     newNode.setAttribute("height", "35px");
     newNode.setAttribute("width", "35px");
@@ -48,7 +49,7 @@ function createLine(item1, item2){
 function addEventListeners(){
     let skillNodes = document.getElementsByClassName("skillNode");
     for(i = 0; i < skillNodes.length; i++){
-       skillNodes.item(i).addEventListener("dbclick", showSkill);
+       skillNodes.item(i).addEventListener("dblclick", showSkill);
 
     }
 }
