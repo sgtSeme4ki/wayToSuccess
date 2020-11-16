@@ -19,22 +19,12 @@ let newPosX, newPosY = null;
 
 function dragStart(e) {
   //Make SVG and lines undraggable
+  console.log(e.target);
   if (e.target !== e.currentTarget && e.target !== document.getElementById("svg1") && e.target.localName !== "line") {
     active = true;
 
     // this is the item we are interacting with
     activeItem = e.target;
-    iterator1 = assigned.values();
-
-
-
-    for (i = 0; i < lines.length; i++) {
-      if (iterator1.next().value.lastIndexOf(activeItem) !== -1) {
-        activeLines.push(lines.item(i));
-      }
-    }
-    activePos = getActivePos(activeLines);
-    activeIndexes = getActiveIndexes(activeLines, activePos);
 
     if (activeItem !== null) {
       if (!activeItem.xOffset) {
@@ -62,12 +52,6 @@ function dragEnd(e) {
     activeItem.initialX = activeItem.currentX;
     activeItem.initialY = activeItem.currentY;
   }
-
-  iterator1 = assigned.values();
-
-  activeLines = [];
-  activePos = [];
-  activeIndexes = [];
   active = false;
   activeItem = null;
 }
