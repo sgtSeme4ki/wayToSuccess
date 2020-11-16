@@ -6,7 +6,7 @@ addEventListeners();
 function showSkill(e) {
     skillNode = e.target;
     newSkill = createSkill();
-    newSkill.innerHTML += "new Skill";
+    newSkill.innerHTML += "new&nbsp;Skill";
 
     //offset is either bottom, left or right
     offset = skillNode.style[0]
