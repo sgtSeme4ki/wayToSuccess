@@ -27,7 +27,6 @@ function showSkillText(e){
     offset = skill.style[0];
     newTextBox.setAttribute("style", `${offset}: 60px`);
 
-    //newTextBox.addEventListener("dblclick", e => e.stopPropagation());
     skill.removeEventListener("dblclick", showSkillText);
     skill.appendChild(newTextBox);
 
