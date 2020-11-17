@@ -13,7 +13,7 @@ body{
 }
 
 .skillNode {
-    
+    text-align: center;
     position: relative;
     width: 50px;
     height: 50px;
@@ -24,6 +24,15 @@ body{
     user-select: none;
 }
 
+.skillNode::before{
+    display: inline-block;
+    height: 100%;
+    content: '';
+}
+
+.skillNode span{
+    background-color: beige;
+}
 .skillNode:active {
     background-color: rgba(168, 218, 220, 1.00);
 }
