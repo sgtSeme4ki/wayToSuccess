@@ -19,20 +19,28 @@ function showSkill(e) {
 
 
 }
-function showSkillText(e){
+function showSkillText(e) {
     console.log("showSkillText");
     newTextBox = createTextBox("Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua");
     skill = e.target;
 
     offset = skill.style[0];
     newTextBox.setAttribute("style", `${offset}: 60px`);
-
+    newTextBox.addEventListener("dblclick", removeSkillText);
     skill.removeEventListener("dblclick", showSkillText);
     skill.appendChild(newTextBox);
 
 }
 
-function createTextBox(text){
+function removeSkillText(e){
+    console.log("removeSkillText");
+    textBox = e.target;
+    skill = e.target.parentNode;
+    skill.addEventListener("dblclick", showSkillText);
+    textBox.remove();
+}
+
+function createTextBox(text) {
     newTextBox = document.createElement("div");
     newTextBox.setAttribute("class", "textBox");
     newTextBox.innerHTML += text;
