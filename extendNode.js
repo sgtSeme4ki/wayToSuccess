@@ -17,8 +17,25 @@ function showSkill(e) {
 
     newSkill.addEventListener("dblclick", showSkillText);
 
+    skillNode.addEventListener("dblclick", removeSkill);
+
 
 }
+
+function removeSkill(e){
+    if(e.target.parentNode !== document.getElementById("container")){
+        return;
+    }
+    console.log("removeSkill");
+    skillNode = e.target;
+    skills = skillNode.children;
+    console.log(skills);
+    for (i = 0; i < skills.length; i++){
+        skills.item(i).remove();
+    }
+    skillNode.addEventListener("dblclick", showSkill);
+}
+
 function showSkillText(e) {
     console.log("showSkillText");
     newTextBox = createTextBox("Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua");
