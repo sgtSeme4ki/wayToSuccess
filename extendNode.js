@@ -1,12 +1,8 @@
-//onclick in html
-
 addEventListeners();
-
 
 function showSkill(e) {
     skillNode = e.target;
-    newSkill = createSkill();
-    newSkill.innerHTML += "new&nbsp;Skill";
+    newSkill = createSkill("new&nbsp;Skill");
 
     //offset is either bottom, left or right
     offset = skillNode.style[0]
@@ -22,22 +18,20 @@ function showSkill(e) {
 
 }
 
-function removeSkill(e){
-    if(e.target.parentNode !== document.getElementById("container")){
+function removeSkill(e) {
+    if (e.target.parentNode !== document.getElementById("container")) {
         return;
     }
-    console.log("removeSkill");
     skillNode = e.target;
     skills = skillNode.children;
-    console.log(skills);
-    for (i = 0; i < skills.length; i++){
+
+    for (i = 0; i < skills.length; i++) {
         skills.item(i).remove();
     }
     skillNode.addEventListener("dblclick", showSkill);
 }
 
 function showSkillText(e) {
-    console.log("showSkillText");
     newTextBox = createTextBox("Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua");
     skill = e.target;
 
@@ -49,8 +43,7 @@ function showSkillText(e) {
 
 }
 
-function removeSkillText(e){
-    console.log("removeSkillText");
+function removeSkillText(e) {
     textBox = e.target;
     skill = e.target.parentNode;
     skill.addEventListener("dblclick", showSkillText);
@@ -65,10 +58,10 @@ function createTextBox(text) {
     return newTextBox;
 }
 
-function createSkill() {
-
+function createSkill(skillName) {
     newSkill = document.createElement("div");
     newSkill.setAttribute("class", "skill");
+    newSkill.innerHTML += skillName;
 
     return newSkill;
 }
@@ -87,8 +80,6 @@ function createLine(item1, item2) {
     newLine.setAttribute("y1", y1);
     newLine.setAttribute("x2", x2);
     newLine.setAttribute("y2", y2);
-
-
 
     assigned.set(newLine, [item1, item2]);
 
