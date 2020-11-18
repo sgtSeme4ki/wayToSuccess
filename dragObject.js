@@ -25,6 +25,10 @@ function dragStart(e) {
     // this is the item we are interacting with
     activeItem = e.target;
 
+    if(e.target.getAttribute("class") === "skillNode" || (e.target.tagName == "SPAN")){
+      activeItem = e.target.parentNode;
+    }
+
     if (activeItem !== null) {
       if (!activeItem.xOffset) {
         activeItem.xOffset = 0;
