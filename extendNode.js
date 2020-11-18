@@ -1,6 +1,10 @@
 addEventListeners();
 
 function showSkill(e) {
+    if(e.target.getAttribute("class") !== "skillNode"){
+        console.log("object is not skillNode");
+        return;
+    }
     skillNode = e.target;
     newSkill = createSkill("new&nbsp;Skill");
 
@@ -19,19 +23,27 @@ function showSkill(e) {
 }
 
 function removeSkill(e) {
-    if (e.target.parentNode !== document.getElementById("container")) {
+    if(e.target.getAttribute("class") !== "skillNode"){
+        console.log("object is not skillNode");
         return;
     }
     skillNode = e.target;
     skills = skillNode.children;
-
     for (i = 0; i < skills.length; i++) {
-        skills.item(i).remove();
+        console.log(skills.item(i));
+        if(skills.item(i).getAttribute("class") === "skill"){
+            skills.item(i).remove();
+        }
+        
     }
     skillNode.addEventListener("dblclick", showSkill);
 }
 
 function showSkillText(e) {
+    if(e.target.getAttribute("class") !== "skill"){
+        console.log("object is not skill");
+        return;
+    }
     newTextBox = createTextBox("Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua");
     skill = e.target;
 
@@ -44,6 +56,10 @@ function showSkillText(e) {
 }
 
 function removeSkillText(e) {
+    if(e.target.getAttribute("class") !== "textBox"){
+        console.log("object is not textBox");
+        return;
+    }
     textBox = e.target;
     skill = e.target.parentNode;
     skill.addEventListener("dblclick", showSkillText);
