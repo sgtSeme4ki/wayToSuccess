@@ -12,6 +12,42 @@ body{
     touch-action: none;
 }
 
+.wrapper {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+.wrapper span{
+    background-color: rgb(245, 230, 99);
+}
+
+.wrapper:hover{
+    cursor: pointer;
+    border-width: 0.2vw;
+}
+
+.wrapper:hover > .skillNode{
+    cursor: pointer;
+    border-width: 0.2vw;
+}
+
+.wrapper:hover > span{
+    cursor: pointer;
+    border-width: 0.2vw;
+}
+
+.wrapper:active > .skillNode{
+    background-color: rgba(168, 218, 220, 1.00);
+}
+
+.wrapper:active > span{
+    background-color: rgba(168, 218, 220, 1.00);
+}
+
 .skillNode {
     text-align: center;
     position: relative;
@@ -22,26 +58,13 @@ body{
     border-radius: 50%;
     touch-action: none;
     user-select: none;
+    z-index: 0;
 }
 
 .skillNode::before{
     display: inline-block;
     height: 100%;
     content: '';
-}
-
-.skillNode span{
-    position: absolute;
-    bottom: 0;
-    background-color: beige;
-}
-.skillNode:active {
-    background-color: rgba(168, 218, 220, 1.00);
-}
-
-.skillNode:hover {
-    cursor: pointer;
-    border-width: 0.2vw;
 }
 
 .skill{
