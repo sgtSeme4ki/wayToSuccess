@@ -9,7 +9,7 @@ function showSkill(e) {
     newSkill = createSkill("new&nbsp;Skill");
 
     //offset is either bottom, left or right
-    offset = skillNode.style[0]
+    offset = skillNode.parentNode.style[0]
     newSkill.setAttribute("style", `${offset}: 100px`);
 
     skillNode.appendChild(newSkill);
