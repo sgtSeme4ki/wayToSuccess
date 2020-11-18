@@ -31,6 +31,8 @@ body{
 }
 
 .skillNode span{
+    position: absolute;
+    bottom: 0;
     background-color: beige;
 }
 .skillNode:active {
