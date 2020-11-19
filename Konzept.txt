@@ -13,3 +13,5 @@ Netzstruktur
 Standardbutton
 
 Klasse Node mit Onklick
+
+Links zu Dokumenten
