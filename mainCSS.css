@@ -61,11 +61,7 @@ body{
     z-index: 0;
 }
 
-.skillNode::before{
-    display: inline-block;
-    height: 100%;
-    content: '';
-}
+
 
 .skill{
     position: relative;
