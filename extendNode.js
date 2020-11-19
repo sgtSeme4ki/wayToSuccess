@@ -108,9 +108,13 @@ function createLine(item1, item2) {
 }
 
 function addEventListeners() {
-    let skillNodes = document.getElementsByClassName("skillNode");
+    skillNodes = document.getElementsByClassName("skillNode");
     for (i = 0; i < skillNodes.length; i++) {
         skillNodes.item(i).addEventListener("dblclick", showSkill);
 
     }
+}
+
+function addSkillAmount() {
+    skillNodes = document.getElementsByClassName("skillNode");
 }
