@@ -1,7 +1,8 @@
-addEventListeners();
+//addEventListenersDefault();
+addEventListenersSpecific();
 
 function showSkill(e) {
-    if(e.target.getAttribute("class") !== "skillNode"){
+    if (e.target.getAttribute("class") !== "skillNode") {
         console.log("object is not skillNode");
         return;
     }
@@ -17,13 +18,13 @@ function showSkill(e) {
 
     newSkill.addEventListener("dblclick", showSkillText);
 
-    skillNode.addEventListener("dblclick", removeSkill);
+    skillNode.addEventListener("dblclick", removeSkills);
 
 
 }
 
-function removeSkill(e) {
-    if(e.target.getAttribute("class") !== "skillNode"){
+function removeSkills(e) {
+    if (e.target.getAttribute("class") !== "skillNode") {
         console.log("object is not skillNode");
         return;
     }
@@ -31,16 +32,16 @@ function removeSkill(e) {
     skills = skillNode.children;
     for (i = 0; i < skills.length; i++) {
         console.log(skills.item(i));
-        if(skills.item(i).getAttribute("class") === "skill"){
+        if (skills.item(i).getAttribute("class") === "skill") {
             skills.item(i).remove();
         }
-        
+
     }
     skillNode.addEventListener("dblclick", showSkill);
 }
 
 function showSkillText(e) {
-    if(e.target.getAttribute("class") !== "skill"){
+    if (e.target.getAttribute("class") !== "skill") {
         console.log("object is not skill");
         return;
     }
@@ -56,7 +57,7 @@ function showSkillText(e) {
 }
 
 function removeSkillText(e) {
-    if(e.target.getAttribute("class") !== "textBox"){
+    if (e.target.getAttribute("class") !== "textBox") {
         console.log("object is not textBox");
         return;
     }
@@ -107,7 +108,7 @@ function createLine(item1, item2) {
 
 }
 
-function addEventListeners() {
+function addEventListenersDefault() {
     skillNodes = document.getElementsByClassName("skillNode");
     for (let i = 0; i < skillNodes.length; i++) {
         skillNodes.item(i).addEventListener("dblclick", showSkill);
@@ -115,14 +116,72 @@ function addEventListeners() {
     }
 }
 
-function addSkillsWerdegang(){
-
+function addEventListenersSpecific() {
+    skillNodes = document.getElementsByClassName("skillNode");
+    skillNodes.item(0).addEventListener("dblclick", addSkillsTech);
+    skillNodes.item(1).addEventListener("dblclick", addSkillsSoft);
+    skillNodes.item(2).addEventListener("dblclick", addSkillsWerdegang);
 }
 
-function addSkillsTech(){
+function showSkills(skillNode, skills) {
+    skillSize = skillNode.getAttribute("skills");
+    offset0 = skillNode.parentNode.style[0];
+    //offset1, offset2;
+    //set spacing of skills
+    if (offset0 === "bottom" || offset0 === "top") {
+        offset1 = "right";
+        offset2 = "left";
+    } else {
+        offset1 = "bottom";
+        offset2 = "top";
+    }
+    pixel = 0;
+    for (let i = 0; i < skillSize; i++) {
+        if ((i % 3) == 0) {
+            pixel = pixel + 150;
+        }
+        if ((i % 3) == 1) {
+            skills[i].setAttribute("style", `${offset0}: ${pixel}px; ${offset1}: ${pixel}px;`);
+        } else if ((i % 3) == 2) {
+            skills[i].setAttribute("style", `${offset0}: ${pixel}px; ${offset2}: ${pixel}px;`);
+        } else {
+            skills[i].setAttribute("style", `${offset0}: ${pixel}px;`);
+        }
+        skills[i].addEventListener("dblclick", showSkillText);
+        skills[i].addEventListener("dblclick", removeSkills);
+        skillNode.appendChild(skills[i]);
+        skillNode.removeEventListener("dblclick", showSkills);
 
+
+    }
 }
 
-function addSkillsSoft(){
-    
+function addSkillsWerdegang(e) {
+    if (e.target.getAttribute("id") !== "Werdegang") {
+        console.log("object is not Werdegang");
+        return;
+    }
+    werdegang = document.getElementById("Werdegang");
+    skill1 = createSkill("Abitur");
+    skill2 = createSkill("Studium");
+    skills = [skill1, skill2];
+    showSkills(werdegang, skills);
+}
+
+function addSkillsTech(e) {
+    if (e.target.getAttribute("id") !== "Tech Skills") {
+        console.log("object is not Tech Skills");
+        return;
+    }
+    tech = document.getElementById("Tech Skills");
+    skillSize = soft.getAttribute("skills");
+}
+
+function addSkillsSoft(e) {
+    if (e.target.getAttribute("id") !== "Soft Skills") {
+        console.log("object is not Soft Skills");
+        return;
+    }
+    soft = document.getElementById("Soft Skills");
+    skillSize = soft.getAttribute("skills");
 }
