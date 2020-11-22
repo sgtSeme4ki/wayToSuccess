@@ -34,10 +34,10 @@ function removeSkills(e) {
         console.log(skills.item(i));
         if (skills.item(i).getAttribute("class") === "skill") {
             skills.item(i).remove();
+            i--;
         }
-
     }
-    skillNode.addEventListener("dblclick", showSkill);
+    addEventListenersSpecific();
 }
 
 function showSkillText(e) {
@@ -148,7 +148,7 @@ function showSkills(skillNode, skills) {
             skills[i].setAttribute("style", `${offset0}: ${pixel}px;`);
         }
         skills[i].addEventListener("dblclick", showSkillText);
-        skills[i].addEventListener("dblclick", removeSkills);
+        skillNode.addEventListener("dblclick", removeSkills);
         skillNode.appendChild(skills[i]);
         skillNode.removeEventListener("dblclick", showSkills);
 
@@ -166,6 +166,7 @@ function addSkillsWerdegang(e) {
     skill2 = createSkill("Studium");
     skills = [skill1, skill2];
     showSkills(werdegang, skills);
+    werdegang.removeEventListener("dblclick", addSkillsWerdegang);
 }
 
 function addSkillsTech(e) {
