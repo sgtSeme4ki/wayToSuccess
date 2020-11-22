@@ -15,3 +15,9 @@ Standardbutton
 Klasse Node mit Onklick
 
 Links zu Dokumenten
+
+TODO:
+-make dblclick Events responsive(tap with timeout)?
+-Documentlinks
+-SQLite DB
+-PHP-Backend
