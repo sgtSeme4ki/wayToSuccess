@@ -30,13 +30,14 @@ function removeSkills(e) {
     }
     skillNode = e.target;
     skills = skillNode.children;
+    console.log(skills);
     for (i = 0; i < skills.length; i++) {
-        console.log(skills.item(i));
         if (skills.item(i).getAttribute("class") === "skill") {
             skills.item(i).remove();
             i--;
         }
     }
+    skillNode.removeEventListener("dblclick", removeSkills);
     addEventListenersSpecific();
 }
 
@@ -175,7 +176,17 @@ function addSkillsTech(e) {
         return;
     }
     tech = document.getElementById("Tech Skills");
-    skillSize = soft.getAttribute("skills");
+    skill1 = createSkill("Java");
+    skill2 = createSkill("JavaScript/HTML/CSS");
+    skill3 = createSkill("SQL");
+    skill4 = createSkill("Betriebssysteme");
+    skill5 = createSkill("Netzwerke");
+    skill6 = createSkill("Datenstrukturen");
+    skills = [skill1, skill2, skill3, skill4, skill5, skill6];
+    tech.setAttribute("skills", skills.length);
+    showSkills(tech, skills);
+    //TODO: make dblclick responsive
+    tech.removeEventListener("dblclick", addSkillsWerdegang);
 }
 
 function addSkillsSoft(e) {
@@ -184,5 +195,12 @@ function addSkillsSoft(e) {
         return;
     }
     soft = document.getElementById("Soft Skills");
-    skillSize = soft.getAttribute("skills");
+    skill1 = createSkill("Kommunikation");
+    skill2 = createSkill("Selbstständig");
+    skill3 = createSkill("Auffassungsgabe");
+    skill4 = createSkill("Teamplayer");
+    skills = [skill1, skill2, skill3, skill4];
+    soft.setAttribute("skills", skills.length);
+    showSkills(soft, skills);
+    soft.removeEventListener("dblclick", addSkillsSoft);
 }
