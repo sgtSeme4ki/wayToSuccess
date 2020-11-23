@@ -1,6 +1,8 @@
 //addEventListenersDefault();
 addEventListenersSpecific();
 
+let addFunctions = {addSkillsTech: addSkillsTech, addSkillsSoft: addSkillsSoft, addSkillsWerdegang: addSkillsWerdegang};
+
 function showSkill(e) {
     if (e.target.getAttribute("class") !== "skillNode") {
         console.log("object is not skillNode");
@@ -24,21 +26,23 @@ function showSkill(e) {
 }
 
 function removeSkills(e) {
+    console.log("removeSkills was called");
     if (e.target.getAttribute("class") !== "skillNode") {
         console.log("object is not skillNode");
         return;
     }
     skillNode = e.target;
     skills = skillNode.children;
-    console.log(skills);
-    for (i = 0; i < skills.length; i++) {
+    for (i = skills.length - 1; i >= 0; i--) {
         if (skills.item(i).getAttribute("class") === "skill") {
-            skills.item(i).remove();
-            i--;
+            skills.item(i).remove();;
         }
     }
     skillNode.removeEventListener("dblclick", removeSkills);
-    addEventListenersSpecific();
+    functionName = "addSkills" + skillNode.id.split(" ")[0];
+    console.log(functionName);
+    skillNode.addEventListener("dblclick", addFunctions[functionName]);
+    //addEventListenersSpecific();
 }
 
 function showSkillText(e) {
@@ -186,7 +190,7 @@ function addSkillsTech(e) {
     tech.setAttribute("skills", skills.length);
     showSkills(tech, skills);
     //TODO: make dblclick responsive
-    tech.removeEventListener("dblclick", addSkillsWerdegang);
+    tech.removeEventListener("dblclick", addSkillsTech);
 }
 
 function addSkillsSoft(e) {
