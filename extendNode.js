@@ -42,7 +42,6 @@ function removeSkills(e) {
     functionName = "addSkills" + skillNode.id.split(" ")[0];
     console.log(functionName);
     skillNode.addEventListener("dblclick", addFunctions[functionName]);
-    //addEventListenersSpecific();
 }
 
 function showSkillText(e) {
