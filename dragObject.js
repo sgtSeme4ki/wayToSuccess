@@ -19,7 +19,7 @@ let newPosX, newPosY = null;
 
 function dragStart(e) {
   //Make SVG and lines undraggable
-  if (e.target !== e.currentTarget && e.target !== document.getElementById("svg1") && e.target.localName !== "line") {
+  if (e.target !== e.currentTarget && e.target !== document.getElementById("svg") && e.target.localName !== "line") {
     active = true;
 
     // this is the item we are interacting with
