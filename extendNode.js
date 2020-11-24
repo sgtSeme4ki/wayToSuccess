@@ -1,7 +1,7 @@
 //addEventListenersDefault();
 addEventListenersSpecific();
 
-let addFunctions = {addSkillsTech: addSkillsTech, addSkillsSoft: addSkillsSoft, addSkillsWerdegang: addSkillsWerdegang};
+let addFunctions = { addSkillsTech: addSkillsTech, addSkillsSoft: addSkillsSoft, addSkillsWerdegang: addSkillsWerdegang };
 
 function showSkill(e) {
     if (e.target.getAttribute("class") !== "skillNode") {
